@@ -1,1 +1,1 @@
-print('This is my initial github code')
+print('This is my initial github code.')
