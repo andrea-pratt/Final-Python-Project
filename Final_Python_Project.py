@@ -1,1 +1,1 @@
-# Initial GitJub test
+# Initial GitHub test
