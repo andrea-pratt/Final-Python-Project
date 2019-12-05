@@ -1,6 +1,7 @@
 import requests
 
-for number in range(1):
+# TODO add try/except block and add code to create word document out of this data
+for number in range(3):
     data = requests.get('https://taco-1150.herokuapp.com/random/?full_taco=true').json()
     base_layer_recipe = data['base_layer']['recipe']
     seasoning_recipe = data['seasoning']['recipe']
