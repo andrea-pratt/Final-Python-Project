@@ -1,12 +1,17 @@
-# Importing beautiful soup module
 import requests
-import bs4
-res = requests.get("""https://eservices.minnstate.edu/registration/search/advancedSubmit.html?campusid=305&searchrcid
-=0305&searchcampusid=305&yrtr=20205&subject=ITEC&courseNumber=&courseId=&openValue=OPEN_PLUS_WAITLIST&delivery=ALL&
-showAdvanced=&starttime=&endtime=&mntransfer=&credittype=ALL&credits=&instructor=&keyword=&begindate=&site=&
-resultNumber=250
-""")
-res.raise_for_status()
-noStarchSoup = bs4.BeautifulSoup(res.text)
-type(noStarchSoup)
-print(noStarchSoup)
+
+for number in range(1):
+    data = requests.get('https://taco-1150.herokuapp.com/random/?full_taco=true').json()
+    base_layer_name = data['base_layer']['name']
+    base_layer_recipe = data['base_layer']['recipe']
+    seasoning_name = data['seasoning']['name']
+    seasoning_recipe = data['seasoning']['recipe']
+    mixin_name = data['mixin']['name']
+    mixin_recipe = data['mixin']['recipe']
+    condiment_name = data['condiment']['name']
+    condiment_recipe = data['condiment']['name']
+    shell_name = data['shell']['name']
+    shell_recipe = data['shell']['name']
+    print(f'{base_layer_name}\n{base_layer_recipe}\n{seasoning_name}\n{seasoning_recipe}\n{mixin_name}\n{mixin_recipe}')
+    print(f'{condiment_name}/n{condiment_recipe}\n{shell_name}\n{shell_recipe}')
+    print(data)
