@@ -12,6 +12,5 @@ for number in range(1):
     condiment_recipe = data['condiment']['name']
     shell_name = data['shell']['name']
     shell_recipe = data['shell']['name']
-    print(f'{base_layer_name}\n{base_layer_recipe}\n{seasoning_name}\n{seasoning_recipe}\n{mixin_name}\n{mixin_recipe}')
-    print(f'{condiment_name}/n{condiment_recipe}\n{shell_name}\n{shell_recipe}')
-    print(data)
+    print(f'{base_layer_recipe}\n{seasoning_recipe}\n{mixin_recipe}\n')
+    print(f'{condiment_recipe}\n{shell_recipe}')
