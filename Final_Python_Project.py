@@ -2,7 +2,9 @@ import requests
 import docx
 from PIL import Image
 # import PIL
-image = Image.open('chad-montano-IP5MCM6nZ5A-unsplash.jpg')
+image = Image.open('Taco_Image.jpg')
+resized_image = image.thumbnail((250, 200))
+image.save('taco_thumbnail.jpg')
 # TODO add try/except block
 document = docx.Document()
 
