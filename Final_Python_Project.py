@@ -1,8 +1,8 @@
 import requests
 import docx
-from PIL import image
+from PIL import Image
 # import PIL
-
+image = Image.open('chad-montano-IP5MCM6nZ5A-unsplash.jpg')
 # TODO add try/except block
 document = docx.Document()
 
