@@ -1,7 +1,9 @@
 import requests
 import docx
+from PIL import image
+# import PIL
 
-# TODO add try/except block and add code to create word document out of this data
+# TODO add try/except block
 document = docx.Document()
 
 for number in range(3):
