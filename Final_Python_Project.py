@@ -2,12 +2,15 @@ import requests
 import docx
 from PIL import Image
 # import PIL
-image = Image.open('Taco_Image.jpg')
+from docx.shared import Inches
+
+image = Image.open('taco_thumbnail.jpg')
 resized_image = image.thumbnail((250, 200))
 image.save('taco_thumbnail.jpg')
 # TODO add try/except block
 document = docx.Document()
-
+document.add_picture('taco_thumbnail.jpg', width=Inches(2))
+document.save('random_taco_recipes.docx')
 for number in range(3):
     data = requests.get('https://taco-1150.herokuapp.com/random/?full_taco=true').json()
     base_layer_recipe = data['base_layer']['recipe']
