@@ -1,14 +1,18 @@
 import requests
 import docx
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 # import PIL
 from docx.shared import Inches
 
-image = Image.open('taco_thumbnail.jpg')
-resized_image = image.thumbnail((250, 200))
+image = Image.open('taco_image.jpg')
+resized_image = image.thumbnail((800, 800))
+font = ImageFont.truetype('DejaVuSans.ttf', 40)
+img_draw = ImageDraw.Draw(image)
+img_draw.text([80, 100], 'Random Taco Cookbook', fill='white', font=font)
 image.save('taco_thumbnail.jpg')
 # TODO add try/except block
 document = docx.Document()
+document.add_paragraph('Random Taco Cookbook')
 document.add_picture('taco_thumbnail.jpg', width=Inches(2))
 document.save('random_taco_recipes.docx')
 for number in range(3):
