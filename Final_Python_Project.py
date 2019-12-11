@@ -26,7 +26,7 @@ try:
     # This paragraph will give credit to the API and the person who took the photo
     document.add_paragraph('(who took the picture?)\n(what website did the pic come from)\n(who wrote the code?)')
     document.add_page_break()  # Adding a page break after the credits
-    document.save('random_taco_recipes.docx')  # Saving the document before trying to call the API
+    document.save('Random_Taco_Cookbook.docx')  # Saving the document before trying to call the API
 # Try to call the API and add the data to word document. If it fails there will be an error message
     try:
         # This loop will be responsible for creating 3 separate and random taco recipes
@@ -49,27 +49,28 @@ try:
             document.add_paragraph(f'{base_layer_name} with {seasoning_name}, {mixin_name} and {condiment_name} '
                                    f'in {shell_name}', 'Heading 1')
             # Adding taco base layer name with the heading 1 style
-            document.add_paragraph(f'{base_layer_name}', 'Heading 1')
+            document.add_paragraph(f'{base_layer_name}', 'Heading 4')
             # Adding a paragraph that is the base layer recipe
             document.add_paragraph(f'{base_layer_recipe}')
             # Adding a heading paragraph for the seasoning recipe name
-            document.add_paragraph(f'{seasoning_name}', 'Heading 1')
+            document.add_paragraph(f'{seasoning_name}', 'Heading 4')
             # Adding a paragraph for the seasoning recipe
             document.add_paragraph(f'{seasoning_recipe}')
             # Adding a heading paragraph with the mixin recipe name
-            document.add_paragraph(f'{mixin_name}', 'Heading 1')
+            document.add_paragraph(f'{mixin_name}', 'Heading 4')
             # Adding a paragraph with the mixin recipe
             document.add_paragraph(f'{mixin_recipe}')
             # Adding a header paragraph for the condiment name
-            document.add_paragraph(f'{condiment_name}', 'Heading 1')
+            document.add_paragraph(f'{condiment_name}', 'Heading 4')
             # Adding a paragraph for the condiment recipe
             document.add_paragraph(f'{condiment_recipe}')
             # Adding a header paragraph for the shell name
-            document.add_paragraph(f'{shell_name}', 'Heading 1')
+            document.add_paragraph(f'{shell_name}', 'Heading 4')
             # Adding a paragraph for the shell recipe
             document.add_paragraph(f'{shell_recipe}')
             # Adding a page break between each of the 3 recipes
-            document.add_page_break()
+            if not number == 2:
+                document.add_page_break()
         document.save('Random_Taco_Cookbook.docx')
     # If the internet connection fails, this error message will print
     except requests.exceptions.ConnectionError:
