@@ -1,9 +1,11 @@
-# Importing necessary modules for program
+""" This program will create a word document with 3 random taco recipes and a randomly selected taco image. """
+# Importing necessary libraries for program
 import requests  # Importing requests for API calls
-import docx  # Allows for creation of Word documents
-from PIL import Image, ImageFont, ImageDraw  # Importing Pillow image manipulation library
+import docx  # Allows for creation of Microsoft Word documents
+# Importing Pillow image manipulation library and modules for writing on the images
+from PIL import Image, ImageFont, ImageDraw
 from docx.shared import Inches  # Importing the Inches module to use when sizing the image in the word doc
-import shutil
+import shutil  # Lets me save an image from a url
 
 """
 In the following block, I'll be resizing, and adding a title to the taco image. I will then add the image and 
@@ -11,14 +13,17 @@ credits to the first page of the document
 """
 # Try to open the taco image. If it's not in your working directory, an error message will print.
 try:
+    """Making an API call to unsplash for a random image with the query parameter "taco" and my unique client_id. 
+    Data is converted to json formatting."""
     random_taco_image = requests.get('https://api.unsplash.com/photos/random?query="taco";client_id=3a31301fc8edce2497d0e0dd001ec1bfbed7a207b9207dd2ccc5c87baade2b12').json()
+    # Parsing the json data to retrieve the taco image url
     image_url = random_taco_image['links']['download']
-    # Open the url image, set stream to True, this will return the stream content.
     """
     The next 5 lines of code have been adapted from: 
     'https://www.dev2qa.com/how-to-download-image-file-from-url-use-python-requests-or-wget-module/'
     and their purpose is to download an image from a given url.
     """
+    # Open the url image, set stream to True, this will return the stream content.
     resp = requests.get(image_url, stream=True)
     # Open a local file with wb ( write binary ) permission.
     local_file = open('taco_thumbnail.jpg', 'wb')
@@ -34,7 +39,8 @@ try:
         # Trying to resize the image. If something goes wrong, an error message will print.
         try:
             image.thumbnail((800, 800))  # Resizing the image to a thumbnail
-            font = ImageFont.truetype('DejaVuSans.ttf', 45)  # Getting the font for the image text and choosing it's size
+            # Getting the font for the image text and choosing it's size
+            font = ImageFont.truetype('DejaVuSans.ttf', 45)
             img_draw = ImageDraw.Draw(image)  # Creating new object to draw on image
             # Defining the look and position of text on the image
             img_draw.text([10, 50], 'Random Taco Cookbook', fill='white', font=font)
