@@ -58,7 +58,7 @@ try:
             document = docx.Document()  # Creating a Word document
             # Adding a title to first page with the 'Title' style
             document.add_paragraph('Random Taco Cookbook', 'Title')
-            # Adding the taco image with a width of 5.5 inches
+            # Adding the taco image and specifying it's width
             document.add_picture('taco_thumbnail.jpg', width=Inches(5.5))
             document.add_paragraph('Credits', 'Heading 1')  # Adding a paragraph with the word 'credits'
             # This paragraph gives credit for the photo
@@ -127,3 +127,8 @@ try:
 # If the taco image API fails, it will print an error message telling the user to check their internet connection
 except requests.exceptions.ConnectionError:
     print('There seems to be a problem with your internet connection. Cannot get recipe data.')
+
+
+"""Link to this project in GitHub in comments section of D2L submission folder, 
+and HERE: 'https://github.com/apratt1013/Final-Python-Project'
+"""
