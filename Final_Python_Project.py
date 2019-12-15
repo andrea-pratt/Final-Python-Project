@@ -14,7 +14,7 @@ credits to the first page of the document
 # Try to make the API call for the random taco image. If the request fails, an error message will print
 try:
     """Making an API call to Unsplash for a random image with the query parameter "taco" and my unique client_id. 
-    Data is converted to json formatting."""
+    Data is in json formatting."""
     random_taco_image = requests.get('https://api.unsplash.com/photos/random?query="taco";client_id=3a31301fc8edce2497d0e0dd001ec1bfbed7a207b9207dd2ccc5c87baade2b12').json()
     # Parsing the json data to retrieve the taco image url
     image_url = random_taco_image['links']['download']
