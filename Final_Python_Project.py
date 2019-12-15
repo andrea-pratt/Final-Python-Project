@@ -26,7 +26,7 @@ try:
     # Open the url image, set stream to True, this will return the stream content.
     resp = requests.get(image_url, stream=True)
     # Open a local file with wb ( write binary ) permission.
-    local_file = open('taco_thumbnail.jpg', 'wb')
+    local_file = open('original_taco_image.jpg', 'wb')
     # Set decode_content value to True, otherwise the downloaded image file's size will be zero.
     resp.raw.decode_content = True
     # Copy the response stream raw data to local image file.
@@ -37,7 +37,7 @@ try:
     """If the file is not saved correctly, an error message will print saying that the image is not in your 
     working directory """
     try:
-        image = Image.open('taco_thumbnail.jpg')
+        image = Image.open('original_taco_image.jpg')
         # Trying to resize the image. If something goes wrong, an error message will print.
         try:
             image.thumbnail((800, 800))  # Resizing the image to a thumbnail
