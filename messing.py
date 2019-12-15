@@ -3,6 +3,10 @@ import requests  # Importing requests for API calls
 import docx  # Allows for creation of Word documents
 from PIL import Image, ImageFont, ImageDraw  # Importing Pillow image manipulation library
 from docx.shared import Inches  # Importing the Inches module to use when sizing the image in the word doc
+import shutil
+
+
+
 
 
 """
@@ -11,12 +15,34 @@ credits to the first page of the document
 """
 # Try to open the taco image. If it's not in your working directory, an error message will print.
 try:
-    image = Image.open('taco_image.jpg')  # Opening the original taco image
+    image2 = requests.get('https://api.unsplash.com/photos/random?query="taco";client_id=3a31301fc8edce2497d0e0dd001ec1bfbed7a207b9207dd2ccc5c87baade2b12').json()
+    print(image2)
+    download_image = image2['links']['download']
+
+
+    # This is the image url.
+    image_url = download_image
+
+    # Open the url image, set stream to True, this will return the stream content.
+    resp = requests.get(image_url, stream=True)
+
+    # Open a local file with wb ( write binary ) permission.
+    local_file = open('taco_thumbnail.jpg', 'wb')
+
+    # Set decode_content value to True, otherwise the downloaded image file's size will be zero.
+    resp.raw.decode_content = True
+
+    # Copy the response stream raw data to local image file.
+    shutil.copyfileobj(resp.raw, local_file)
+
+    # Remove the image url response object.
+    del resp
+    image = Image.open('taco_thumbnail.jpg')
     image.thumbnail((800, 800))  # Resizing the image to a thumbnail
     font = ImageFont.truetype('DejaVuSans.ttf', 40)  # Getting the font for the image text and choosing it's size
     img_draw = ImageDraw.Draw(image)  # Creating new object to draw on image
     # Defining the look and position of text on the image
-    img_draw.text([80, 100], 'Random Taco Cookbook', fill='white', font=font)
+    img_draw.text([50, 100], 'Random Taco Cookbook', fill='white', font=font)
     image.save('taco_thumbnail.jpg')  # Saving the image with a new file name
 
 
@@ -26,7 +52,7 @@ try:
         document = docx.Document()  # Creating a Word document
         document.add_paragraph('Random Taco Cookbook', 'Title')  # Adding a title to first page with the 'Title' style
         # Adding the taco image with a width of 5.5 inches
-        document.add_picture('taco_thumbnail.jpg', width=Inches(5.5))
+        document.add_picture('taco_thumbnail.jpg', width=Inches(4))
         document.add_paragraph('Credits', 'Heading 1')  # Adding a paragraph with the word 'credits'
         # This paragraph gives credit to the person who took the photo
         document.add_paragraph('•  Taco image: Photo by Chad Montano on Unsplash')
