@@ -131,4 +131,6 @@ except requests.exceptions.ConnectionError:
 
 """Link to this project in GitHub in comments section of D2L submission folder, 
 and HERE: 'https://github.com/apratt1013/Final-Python-Project'
+
+Static taco image version of program is also available in my final project in GitHub
 """
